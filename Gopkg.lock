@@ -34,20 +34,6 @@
   version = "v1.17.0"
 
 [[projects]]
-  digest = "1:ae0036fa14b41c52607c53fa072ef5045ec5f9013ed569e6a5fa19dd5e2ac89a"
-  name = "github.com/golang/protobuf"
-  packages = [
-    "proto",
-    "ptypes",
-    "ptypes/any",
-    "ptypes/duration",
-    "ptypes/timestamp",
-  ]
-  pruneopts = "UT"
-  revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
-  version = "v1.2.0"
-
-[[projects]]
   digest = "1:8f8811f9be822914c3a25c6a071e93beb4c805d7b026cbf298bc577bc1cc945b"
   name = "github.com/google/uuid"
   packages = ["."]
@@ -142,14 +128,6 @@
   version = "1.5.0"
 
 [[projects]]
-  digest = "1:2429434e237905112f6ad776fb14341f6786c5208628d31600f10841d196f9de"
-  name = "github.com/pizzahutdigital/protobufs"
-  packages = ["store"]
-  pruneopts = "UT"
-  revision = "fac70f210058d0650f0ee639ff6e43b4217bd5dd"
-  version = "1.7.0"
-
-[[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
   name = "github.com/pkg/errors"
   packages = ["."]
@@ -241,22 +219,6 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:310db9fc629a10c2a68b1176cc5996f349578a587a7c2a61bf641c1c799c00d8"
-  name = "golang.org/x/net"
-  packages = [
-    "context",
-    "http/httpguts",
-    "http2",
-    "http2/hpack",
-    "idna",
-    "internal/timeseries",
-    "trace",
-  ]
-  pruneopts = "UT"
-  revision = "c10e9556a7bc0e7c942242b606f0acf024ad5d6a"
-
-[[projects]]
-  branch = "master"
   digest = "1:35560529f5721d65f36dc23aa15fbf7306c5091cdc3f29f65881af5031b80cc8"
   name = "golang.org/x/sys"
   packages = ["unix"]
@@ -264,70 +226,19 @@
   revision = "9b800f95dbbc54abff0acf7ee32d88ba4e328c89"
 
 [[projects]]
-  digest = "1:7509ba4347d1f8de6ae9be8818b0cd1abc3deeffe28aeaf4be6d4b6b5178d9ca"
+  digest = "1:038003d098ffc345c4c5c6d47bcc6920b2649ee0c0d557162e54e75c76cadf8b"
   name = "golang.org/x/text"
   packages = [
-    "collate",
-    "collate/build",
-    "internal/colltab",
     "internal/gen",
-    "internal/tag",
     "internal/triegen",
     "internal/ucd",
-    "language",
-    "secure/bidirule",
     "transform",
-    "unicode/bidi",
     "unicode/cldr",
     "unicode/norm",
-    "unicode/rangetable",
   ]
   pruneopts = "UT"
   revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
   version = "v0.3.0"
-
-[[projects]]
-  branch = "master"
-  digest = "1:56b0bca90b7e5d1facf5fbdacba23e4e0ce069d25381b8e2f70ef1e7ebfb9c1a"
-  name = "google.golang.org/genproto"
-  packages = ["googleapis/rpc/status"]
-  pruneopts = "UT"
-  revision = "c830210a61dfaa790e1920f8d0470fc27bc2efbe"
-
-[[projects]]
-  digest = "1:6e94223308f9ee2a9f94741549b84fddcfabf3eaf947f8a6023d34b4b886f9b4"
-  name = "google.golang.org/grpc"
-  packages = [
-    ".",
-    "balancer",
-    "balancer/base",
-    "balancer/roundrobin",
-    "codes",
-    "connectivity",
-    "credentials",
-    "encoding",
-    "encoding/proto",
-    "grpclog",
-    "internal",
-    "internal/backoff",
-    "internal/channelz",
-    "internal/envconfig",
-    "internal/grpcrand",
-    "internal/transport",
-    "keepalive",
-    "metadata",
-    "naming",
-    "peer",
-    "resolver",
-    "resolver/dns",
-    "resolver/passthrough",
-    "stats",
-    "status",
-    "tap",
-  ]
-  pruneopts = "UT"
-  revision = "2e463a05d100327ca47ac218281906921038fd95"
-  version = "v1.16.0"
 
 [[projects]]
   digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
@@ -345,12 +256,10 @@
     "github.com/iancoleman/strcase",
     "github.com/pizzahutdigital/phdmw/phdcid",
     "github.com/pizzahutdigital/phdmw/phdlog",
-    "github.com/pizzahutdigital/protobufs/store",
     "github.com/pkg/errors",
     "github.com/spf13/cobra",
     "github.com/spf13/viper",
     "go.uber.org/zap",
-    "google.golang.org/grpc",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
