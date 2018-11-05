@@ -100,8 +100,11 @@ func (g *ClientGenerator) InterPkgName() string {
 }
 
 // InterPkgName returns the package IMPORT path of the interface
+// removes vendor if found
 func (g *ClientGenerator) InterPkgPath() string {
-	return g.interPkg.Path()
+	p := g.interPkg.Path()
+	stripped := strings.Split(p, "vendor/")
+	return stripped[len(stripped)-1]
 }
 
 // PkgPath path to folder of the package relative to the GOPATH
@@ -166,7 +169,31 @@ func (g *ClientGenerator) GenerateClientsFile() error {
 	return nil
 }
 
+// GenerateRunTests generates shell script to run the test
+func (g *ClientGenerator) GenerateRunTestsFile() error {
+	fileName := "run_test.sh"
+	// check if the file doesn't exist
+	f, err := g.GetFile(fileName, true)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	var s string
+	s, err = g.GenerateRunTests()
+	if err != nil {
+		return err
+	}
+	_, err = f.WriteString(s)
+	return nil
+}
+
 // Available templates for generation
+
+// GenerateRunTests generates tmpls/templates/run_test.tmpl
+func (g *ClientGenerator) GenerateRunTests() (string, error) {
+	return Generate(g, "run_test")
+}
 
 // GenerateInitClientSnippet generates tmpls/templates/init_client.tmpl
 func (g *ClientGenerator) GenerateInitClientSnippet() (string, error) {

@@ -103,6 +103,12 @@ func Start(ctx context.Context) error {
 		}
 	}
 
+	// generate test runner
+	err = g.GenerateRunTestsFile()
+	if err != nil {
+		return err
+	}
+
 	// run goimports
 	importsCmd := exec.Command("goimports", "-w", pkgPath)
 	out, err := importsCmd.Output()
