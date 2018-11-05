@@ -1,0 +1,31 @@
+module github.com/yummydev/grpcgen
+
+require (
+	github.com/fsnotify/fsnotify v1.4.7
+	github.com/gobuffalo/envy v1.6.7
+	github.com/gobuffalo/packd v0.0.0-20181031195726-c82734870264
+	github.com/gobuffalo/packr v1.17.0
+	github.com/google/uuid v0.0.0-20161128191214-064e2069ce9c
+	github.com/hashicorp/hcl v1.0.0
+	github.com/iancoleman/strcase v0.0.0-20180726023541-3605ed457bf7
+	github.com/inconshreveable/mousetrap v1.0.0
+	github.com/joho/godotenv v1.3.0
+	github.com/magiconair/properties v1.8.0
+	github.com/markbates/oncer v0.0.0-20181014194634-05fccaae8fc4
+	github.com/mitchellh/mapstructure v1.1.2
+	github.com/pelletier/go-toml v1.2.0
+	github.com/pizzahutdigital/phdmw v0.0.0-20180530204943-56206c8cbbfb
+	github.com/pkg/errors v0.8.0
+	github.com/spf13/afero v1.1.2
+	github.com/spf13/cast v1.3.0
+	github.com/spf13/cobra v0.0.3
+	github.com/spf13/jwalterweatherman v1.0.0
+	github.com/spf13/pflag v1.0.3
+	github.com/spf13/viper v1.2.1
+	go.uber.org/atomic v1.2.0
+	go.uber.org/multierr v1.1.0
+	go.uber.org/zap v1.9.1
+	golang.org/x/sys v0.0.0-20181031143558-9b800f95dbbc
+	golang.org/x/text v0.3.0
+	gopkg.in/yaml.v2 v2.2.1
+)
