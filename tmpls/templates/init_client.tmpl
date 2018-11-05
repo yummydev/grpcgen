@@ -1,0 +1,18 @@
+// {{.InitClientFuncName}} creates a connection to the GRPC server or panics
+func {{.InitClientFuncName}}() {
+	if {{.Name}} != nil {
+		return
+	}
+	// TODO: Change me
+	addr := "localhost:6001"
+	// make remote gprc connection with sdsrpcaddress
+	conn, err := grpc.Dial(
+		addr,
+		grpc.WithInsecure(),
+	)
+	if err != nil {
+		panic("Unable to establish connection with GRPC server")
+	}
+
+	{{.Name}} = {{.InterPkgName}}.New{{.TypeNameStripped}}(conn)
+}

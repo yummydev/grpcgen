@@ -1,0 +1,201 @@
+syntax = "proto3";
+
+// StoreData service provides an interface into the store data in the couchbase database.
+service StoreData {
+  rpc GetStoreByNumber(GetStoreByNumberReq) returns (GetStoreByNumberRes) {}
+  rpc GetStoresNear(GetStoresNearReq) returns (GetStoresNearRes) {}
+  rpc GetStores(GetStoresReq) returns (GetStoresRes) {}
+  rpc UpdatePromiseTime(UpdatePromiseTimeReq) returns (UpdatePromiseTimeRes) {}
+  rpc UpdateOutOfProducts(UpdateOutOfProductsReq) returns (UpdateOutOfProductsRes) {}
+  rpc UpdateClosure(UpdateClosureReq) returns (UpdateClosureRes) {}
+}
+
+// GetStoreByNumberReq message contains the possible parameters that can be passed to GetStoreByNumber.
+message GetStoreByNumberReq {
+  string storeNumber = 1;
+}
+
+// GetStoreByNumberRes message is the response from the GetStoreByNumber.
+message GetStoreByNumberRes {
+  int64 status = 1;
+  string description = 2;
+  Store store = 3;
+}
+
+// GetStoresNearReq message contains the possible parameters that can be passed to GetStoresNear.
+message GetStoresNearReq {
+  double latitude = 1;
+  double longitude = 2;
+  uint32 range = 3;
+  string zipcode = 4;
+}
+
+// GetStoresNearRes message is the response from the GetStoresNear.
+message GetStoresNearRes {
+  int64 status = 1;
+  string description = 2;
+  repeated Store stores = 3;
+}
+
+// GetStoresReq message contains the possible parameters that can be passed to GetStores.
+message GetStoresReq {}
+
+// GetStoresRes message is the response from GetStores.
+message GetStoresRes {
+  int64 status = 1;
+  string description = 2;
+  repeated SimpleStore stores = 3;
+}
+
+// Store message is the structure of store data that will be returned.
+message Store {
+  string storeNumber = 1;
+  double latitude = 2;
+  double longitude = 3;
+  string brandName = 4;
+  bool phi = 5;
+  string addressLine = 6;
+  string addressLine2 = 7;
+  string addressLine3 = 8;
+  string city = 9;
+  string county = 10;
+  string state = 11;
+  string postalCode = 12;
+  string countryRegion = 13;
+  string businessPhone = 14;
+  string homePhone = 15;
+  string faxPhone = 16;
+  string cellPhone = 17;
+  string pager = 18;
+  bool driveThru = 19;
+  bool dineIn = 20;
+  bool carryOut = 21;
+  bool delivery = 22;
+  bool onlineOrdering = 23;
+  bool wingStreet = 24;
+  bool italianBistro = 25;
+  bool buffet = 26;
+  string buildingDesign = 27;
+  uint64 interiorSeats = 28;
+  uint64 totalSeats = 29;
+  uint64 parkingSpaces = 30;
+  string ownershipType = 31;
+  string multibrandConfiguration = 32;
+  string entityId = 33;
+  double distance = 34; // Value will be populated by GRPC calculation.
+  bool openForCarryout = 35;
+  bool openForDelivery = 36;
+  PromiseTime promiseTime = 37;
+  string storeStatus = 38;
+  string closureReason = 39;
+  string onlineStatus = 40;
+  repeated Day days = 41;
+  OutOfProducts outOfProducts = 42;
+
+}
+
+enum ReceiveType {
+    Carryout = 0;
+    Delivery = 1;
+}
+
+// PromiseTime message is the available promise times for a store.
+message PromiseTime {
+  int64 delivery = 1;
+  int64 carryOut = 2;
+  int64 deliveryUpdatedAt = 3;
+  int64 carryOutUpdatedAt = 4;
+}
+
+message Day {
+  string date = 1;
+  int64 dow = 2;
+  repeated Occassion occassions = 3;
+}
+
+// Occassion message contains the fields for individual occassion instances.
+message Occassion {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  repeated Hour hours = 4;
+  int64 promiseTimeMax = 5;
+  int64 promiseTimeMin = 6;
+  bool showPromiseTime = 7;
+  bool futureOrders = 8;
+  int64 firstOrderOffset = 9;
+  repeated DeliveryZone deliveryZones = 10;
+  int64 minOrder = 11;
+  int64 maxOrder = 12;
+}
+
+message Hour {
+  string startTime = 1;
+  string endTime = 2;
+}
+
+message DeliveryZone {
+  string id = 1;
+  string name = 2;
+}
+
+
+message OutOfProduct {
+  string class = 1;
+  string base = 2;
+  string size = 3;
+  string status = 4;
+}
+
+message OutOfProducts {
+  string channel = 1;
+  string posType = 2;
+  repeated OutOfProduct products = 3;
+}
+
+message UpdatePromiseTimeReq {
+  string storeNumber = 1;
+  ReceiveType type = 2;
+  int64 value = 3;
+  int64 epoch = 4;
+}
+
+message UpdatePromiseTimeRes {
+  int64 status = 1;
+  string description = 2;
+}
+
+message UpdateOutOfProductsReq {
+  string storeNumber = 1;
+  string channel = 2;
+  string posType = 3;
+  repeated OutOfProduct products = 4;
+}
+
+message UpdateOutOfProductsRes {
+  int64 status = 1;
+  string description = 2;
+}
+
+message UpdateClosureReq {
+  string storeNumber = 1;
+  string channel = 2;
+  string posType = 3;
+  string restaurantChannel = 4;
+  string serviceOccasion = 5;
+  string restaurantChannelStatus = 6;
+}
+
+message UpdateClosureRes {
+  int64 status = 1;
+  string description = 2;
+}
+
+// SimpleStore message is the structure of store data that will be returned
+// for GetStores.  This is a custom message because we want to keep it limited
+// since it will be for all stores.
+message SimpleStore {
+  string storeNumber = 1;
+  bool carryOut = 2;
+  bool delivery = 3;
+}

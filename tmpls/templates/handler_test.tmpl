@@ -1,0 +1,44 @@
+func {{.HandlerTestFuncName}}(t *testing.T) {
+	Init{{.TypeNameStripped}}()
+	empty := func() {
+
+	}
+
+	type args struct {
+		ctx  context.Context
+		in   *{{.InterPkgName}}.{{.ReqNameStripped}}
+		opts []grpc.CallOption
+	}
+	tests := []struct {
+		name    string
+		args    args
+		setup   func()
+		want    *{{.InterPkgName}}.{{.ResNameStripped}}
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+		{
+			name: "Example",
+			args: args{
+				ctx: context.Background(),
+				in:  &{{.InterPkgName}}.{{.ReqNameStripped}}{},
+			},
+			setup:   empty,
+			want:    &{{.InterPkgName}}.{{.ResNameStripped}}{},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			got, err := {{.Name}}.{{.HandlerName}}(tt.args.ctx, tt.args.in, tt.args.opts...)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("{{.Name}}.{{.HandlerName}}() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("{{.Name}}.{{.HandlerName}}() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
